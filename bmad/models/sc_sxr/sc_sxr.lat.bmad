@@ -42,6 +42,11 @@ call, file = $LCLS_LATTICE/bmad/instruments/sc_fixers.bmad
 
 use, SC_SXR
 
+!beginning[beta_a] = 70.21730314
+!beginning[beta_b] = 70.21730314
+!beginning[alpha_a] = 29.76798175
+!beginning[alpha_b] = 29.73000643
+
 fixer_otr0h04[beta_a_stored] = 7.71845178831
 fixer_otr0h04[beta_b_stored] = 7.71845178832
 fixer_otr0h04[alpha_a_stored] = 0.316052281303E-01

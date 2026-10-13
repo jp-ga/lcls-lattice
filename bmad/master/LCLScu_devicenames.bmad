@@ -1,5 +1,5 @@
 ! ---------
-! Device mapping derived from /home/mpe/DATA/repo_releases/lcls-lattice/bmad/conversion/from_oracle/lcls_elements.csv
+! Device mapping derived from /sdf/home/m/mpe/repos/lcls-lattice/bmad/conversion/from_oracle/lcls_elements.csv
 AM00[alias]=MIRR:IN20:181
 AM01[alias]=MIRR:IN20:191
 ! No device listed for: BC1CBEG
@@ -79,10 +79,10 @@ BCXXL4[alias]=BEND:LTUS:766
 ! No device listed for: BEGUNDH
 ! No device listed for: BEGUNDS
 BKRCUS[alias]=KICK:CLTS:185
-BKX21957[alias]=KICK:LI21:957:01:00
-BKX22957[alias]=KICK:LI22:957:01:00
-BKY21929[alias]=KICK:LI21:929:01:00
-BKY22929[alias]=KICK:LI22:929:01:00
+BKX21957[alias]=KICK:LI21:957:1
+BKX22957[alias]=KICK:LI22:957:1
+BKY21929[alias]=KICK:LI21:929:1
+BKY22929[alias]=KICK:LI22:929:1
 BL11[alias]=BLEN:LI21:265
 BL12[alias]=BLEN:LI21:280
 BL21[alias]=BLEN:LI24:886
@@ -1009,6 +1009,8 @@ DM60[alias]=BTM:BSYH:858
 ! No device listed for: DPSHX48
 ! No device listed for: DPSHX49
 ! No device listed for: DPSHX50
+! No device listed for: DPSSX17H
+! No device listed for: DPSSX18H
 ! No device listed for: DPSSX35H
 ! No device listed for: DPSSX47H
 ! No device listed for: DPSSX48H
@@ -1186,7 +1188,6 @@ DUMPFACEB[alias]=DUMP:DMPS:699
 ! No device listed for: DUSEGH50
 ! No device listed for: DUSEGS17H
 ! No device listed for: DUSEGS18H
-! No device listed for: DUSEGS19H
 ! No device listed for: DUSEGS48H
 ! No device listed for: DUSEGS49H
 ! No device listed for: DUSEGS50A
@@ -1746,6 +1747,7 @@ LH_UND[alias]=USEG:IN20:466
 ! No device listed for: MBLMH42
 ! No device listed for: MBLMH44
 ! No device listed for: MBLMH46
+! No device listed for: MBLMS19
 ! No device listed for: MBLMS21
 ! No device listed for: MBLMS23
 ! No device listed for: MBLMS25
@@ -1809,8 +1811,6 @@ MCBX4[alias]=MIRR:UNDH:1350
 ! No device listed for: MPHH44
 ! No device listed for: MPHH45
 ! No device listed for: MPHH46
-! No device listed for: MPHS17
-! No device listed for: MPHS18
 ! No device listed for: MPHS19
 ! No device listed for: MPHS20
 ! No device listed for: MPHS21
@@ -2052,8 +2052,6 @@ PSHXH43[alias]=PHAS:UNDH:4395
 PSHXH44[alias]=PHAS:UNDH:4495
 PSHXH45[alias]=PHAS:UNDH:4595
 ! No device listed for: PSHXH46
-PSSXH17[alias]=PHAS:UNDS:1770
-PSSXH18[alias]=PHAS:UNDS:1870
 PSSXH19[alias]=PHAS:UNDS:1970
 PSSXH20[alias]=PHAS:UNDS:2070
 PSSXH21[alias]=PHAS:UNDS:2170
@@ -2604,6 +2602,7 @@ UMAHXH44[alias]=USEG:UNDH:4450
 UMAHXH45[alias]=USEG:UNDH:4550
 UMAHXH46[alias]=USEG:UNDH:4650
 ! No device listed for: UMAHXH47
+! No device listed for: UMASXH19
 UMASXH20[alias]=USEG:UNDS:2050
 UMASXH21[alias]=USEG:UNDS:2150
 UMASXH22[alias]=USEG:UNDS:2250
@@ -2921,6 +2920,7 @@ XCQT32[alias]=XCOR:LTUH:488
 XCQT42[alias]=XCOR:LTUH:588
 XCS1[alias]=XCOR:IN20:911
 XCS2[alias]=XCOR:IN20:951
+! No device listed for: XCSU19
 XCSU20[alias]=EFC:UNDS:2050:X
 XCSU21[alias]=EFC:UNDS:2150:X
 XCSU22[alias]=EFC:UNDS:2250:X
@@ -3210,6 +3210,7 @@ YCQT32[alias]=YCOR:LTUH:493
 YCQT42[alias]=YCOR:LTUH:593
 YCS1[alias]=YCOR:IN20:912
 YCS2[alias]=YCOR:IN20:952
+! No device listed for: YCSU19
 YCSU20[alias]=EFC:UNDS:2050:Y
 YCSU21[alias]=EFC:UNDS:2150:Y
 YCSU22[alias]=EFC:UNDS:2250:Y

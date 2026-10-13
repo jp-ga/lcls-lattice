@@ -1,5 +1,5 @@
 ! ---------
-! Device mapping derived from /home/mpe/DATA/repo_releases/lcls-lattice/bmad/conversion/from_oracle/lcls_elements.csv
+! Device mapping derived from /sdf/home/m/mpe/repos/lcls-lattice/bmad/conversion/from_oracle/lcls_elements.csv
 ! No device listed for: A10Y
 ! No device listed for: A18Y
 ! No device listed for: A28X
@@ -2196,6 +2196,8 @@ DM60[alias]=BTM:BSYH:858
 ! No device listed for: DPSHX48
 ! No device listed for: DPSHX49
 ! No device listed for: DPSHX50
+! No device listed for: DPSSX17H
+! No device listed for: DPSSX18H
 ! No device listed for: DPSSX35H
 ! No device listed for: DPSSX47H
 ! No device listed for: DPSSX48H
@@ -2523,7 +2525,6 @@ DUMPFACEB[alias]=DUMP:DMPS:699
 ! No device listed for: DUSEGH50
 ! No device listed for: DUSEGS17H
 ! No device listed for: DUSEGS18H
-! No device listed for: DUSEGS19H
 ! No device listed for: DUSEGS48H
 ! No device listed for: DUSEGS49H
 ! No device listed for: DUSEGS50A
@@ -2659,8 +2660,16 @@ DUMPFACEB[alias]=DUMP:DMPS:699
 ! No device listed for: FC6
 ! No device listed for: FC7
 FCDG0DU[alias]=FARC:DIAG0:530
-! No device listed for: FIXER_BUN1B
 ! No device listed for: FIXER_OTR
+! No device listed for: FIXER_OTR0H04
+! No device listed for: FIXER_OTRC006
+! No device listed for: FIXER_OTRDG02
+! No device listed for: FIXER_WS32
+! No device listed for: FIXER_WS32B
+! No device listed for: FIXER_WSBP2
+! No device listed for: FIXER_WSC108
+! No device listed for: FIXER_WSEMIT2
+! No device listed for: FIXER_WSSP1D
 ! No device listed for: FV10
 ! No device listed for: FV28
 GJPEPX[alias]=GJET:UNDS:5049
@@ -2864,6 +2873,7 @@ IMUNDI[alias]=TORO:LTUH:920
 ! No device listed for: MBLMH42
 ! No device listed for: MBLMH44
 ! No device listed for: MBLMH46
+! No device listed for: MBLMS19
 ! No device listed for: MBLMS21
 ! No device listed for: MBLMS23
 ! No device listed for: MBLMS25
@@ -2928,8 +2938,6 @@ MCBX4[alias]=MIRR:UNDH:1350
 ! No device listed for: MPHH44
 ! No device listed for: MPHH45
 ! No device listed for: MPHH46
-! No device listed for: MPHS17
-! No device listed for: MPHS18
 ! No device listed for: MPHS19
 ! No device listed for: MPHS20
 ! No device listed for: MPHS21
@@ -3871,6 +3879,7 @@ UMAHXH44[alias]=USEG:UNDH:4450
 UMAHXH45[alias]=USEG:UNDH:4550
 UMAHXH46[alias]=USEG:UNDH:4650
 ! No device listed for: UMAHXH47
+! No device listed for: UMASXH19
 UMASXH20[alias]=USEG:UNDS:2050
 UMASXH21[alias]=USEG:UNDS:2150
 UMASXH22[alias]=USEG:UNDS:2250
@@ -4243,6 +4252,7 @@ XCSP7H[alias]=XCOR:SPH:684
 XCSP7S[alias]=XCOR:SPS:776
 XCSP9H[alias]=XCOR:SPH:844
 XCSP9S[alias]=XCOR:SPS:836
+! No device listed for: XCSU19
 XCSU20[alias]=EFC:UNDS:2050:X
 XCSU21[alias]=EFC:UNDS:2150:X
 XCSU22[alias]=EFC:UNDS:2250:X
@@ -4565,6 +4575,7 @@ YCSP6H[alias]=YCOR:SPH:597
 YCSP6S[alias]=YCOR:SPS:767
 YCSP8H[alias]=YCOR:SPH:757
 YCSP8S[alias]=YCOR:SPS:827
+! No device listed for: YCSU19
 YCSU20[alias]=EFC:UNDS:2050:Y
 YCSU21[alias]=EFC:UNDS:2150:Y
 YCSU22[alias]=EFC:UNDS:2250:Y

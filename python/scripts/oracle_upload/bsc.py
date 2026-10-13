@@ -91,7 +91,8 @@ with open('ips.dump','r') as f:
   for line in f:
     if not line.startswith("#"):
       parts = line.split()
-      name_ = parts[4].removesuffix('?')
+      #name_ = parts[4].removesuffix('?')
+      name_ = parts[4]
       ips_unsorted.append([int(parts[0]), int(parts[1]), name_])
 
 ips = []
@@ -138,7 +139,7 @@ for model in MODELS:
 
   if model == 'sc_dasel':
     id_dasel_1 = strmatch('BEGSPA',lat.names,False)[0]
-    id_dasel_2 = strmatch('ENDBSYA',lat.names,False)[-1] # ENDBSYA
+    id_dasel_2 = strmatch('MADUMP',lat.names,False)[-1] # ENDBSYA
     id_dasel_mark = strmatch('BLRDAS',lat.names)[-1] # downstream of BLRDAS
 
   if model.startswith('cu_'): # BSC parameters for Cu linac beam
@@ -203,6 +204,7 @@ for model in MODELS:
   XID=[0 for x in lat.elements]    # horizontal stay-clear full height (empty array initially)
   YID=[0 for x in lat.elements]    # vertical stay-clear full height (empty array initially)
   Dia=[0 for x in lat.elements]    # Stay-clear full diameter, if cylindrical chamber (empty array initially)
+  Emax = 4.0
   fname = f'BSC_{model}.txt'
   fout = open(fname,'w')
   fout.write('#ELEMENT              S (m)        BSCd (mm)    +BSCx (mm)     -BSCx (mm)    +BSCy (mm)     -BSCy (mm)\n')
@@ -223,7 +225,8 @@ for model in MODELS:
       Dia[ix] = 2*float(np.sqrt(XID[ix]**2 + YID[ix]**2))
 
     else:
-      e=eN/(ele.e_tot/511e-6); # emitance along machine
+      elim = min(ele.e_tot,Emax)
+      e=eN/(elim/511e-6); # emitance along machine
       if ix in R56ids:
         dx=dx0; # horizontal stay-clear addition for R56-compensating chicanes
       else:
@@ -246,12 +249,12 @@ for model in MODELS:
         esprd[ix] = dE1 + 2*chirp + 2*Ejit
       elif ele.e_tot > 1.3 and ele.e_tot < 1.9: 
         # ~BC2
-        esprd[ix] = dE2 + chirp + 2*Ejit+Etrip/ele.e_tot
+        esprd[ix] = dE2 + chirp + 2*Ejit+Etrip/elim
       elif ele.e_tot > 3.7 and ele.e_tot < 8.2: 
         # ~post-linac (includes LCLS2cuS)
         # 3.8->3.7 & 4.2->8.2 for LCLSII-HE (July 17, 2017)
         if ele.s < S_XRstart:  # before undulator
-          esprd[ix]=dE3 + chirp + vern + Ejit + Etrip/ele.e_tot  # includes LCLS2cuS
+          esprd[ix]=dE3 + chirp + vern + Ejit + Etrip/elim # includes LCLS2cuS
         elif ele.s >= S_XRstart and ele.s <= S_XRterm: 
           # in undulator
           steer=steer1
@@ -263,9 +266,9 @@ for model in MODELS:
             # after TCX01 Tcav
             xt[ix] = (xf+xw/2)*np.sqrt(ele.beta_a/bxf)*np.sin(ele.phi_a-mx0)/np.sin(mxf-mx0); # scale from "xf" offset at screen (m)
           if S_XRterm>0:
-            esprd[ix] = dE4 + chirp + vern + EFEL + Ejit + Etrip/ele.e_tot # after undulator (HXR or SXR)
+            esprd[ix] = dE4 + chirp + vern + EFEL + Ejit + Etrip/elim # after undulator (HXR or SXR)
           else:
-            esprd[ix] = dE4 + chirp + vern + Ejit + Etrip/ele.e_tot  # in BSY dumpline
+            esprd[ix] = dE4 + chirp + vern + Ejit + Etrip/elim  # in BSY dumpline
       XID[ix] = 1e3/2*float(max(2*nsig*np.sqrt(e*ele.beta_a*betaf) + etaf*np.abs(ele.eta_x)*esprd[ix] + 2*steer + 2*xt[ix] + dx, min_XID))
       YID[ix] = 1e3/2*float(max(2*nsig*np.sqrt(e*ele.beta_b*betaf) + etaf*np.abs(ele.eta_y)*esprd[ix] + 2*steer, min_YID))
       Dia[ix] = 2*float(np.sqrt(XID[ix]**2+YID[ix]**2))
@@ -360,7 +363,7 @@ with filepath.open('w') as f_all:
         #if x[0] == 'Q0H04':
         #    print(f'FOO: {x}')
         if not x[0].startswith('FIXER'):
-          if x[0] != name:
+          if x[0] != name.removesuffix('?'):
             print(f'WARNING.  For {model_name}, ips.dump name >{name}< not match {model_name}_twiss.dat name >{x[0]}<')
           f_all.write(f'{name}, {x[2]:>10.6e}, {x[3]:>10.6e},{-x[3]:>10.6e}, {x[4]:>10.6e},{-x[4]:>10.6e}\n')
 

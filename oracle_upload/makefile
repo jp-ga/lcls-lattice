@@ -2,12 +2,20 @@
 PYTHON ?= python3
 .DEFAULT_GOAL := all
 
+
 ifeq ($(filter grouped-target,$(.FEATURES)),)
 $(error GNU Make 4.3+ required)
 endif
 
 ifndef LCLS_LATTICE
 $(error LCLS_LATTICE is not set. Please set it before running make)
+endif
+
+LCLS_LATTICE_PROD := /sdf/group/ad/sw/scm/repos/optics/lcls-lattice/
+ifneq ($(abspath $(LCLS_LATTICE)),$(abspath $(LCLS_LATTICE_PROD)))
+$(warning LCLS_LATTICE is '$(LCLS_LATTICE)', prod is '$(LCLS_LATTICE_PROD)')
+$(info Enter to continue or press Ctrl-C to abort)
+$(shell read ans </dev/tty)
 endif
 
 SCRIPT_DIR = $(LCLS_LATTICE)/python/scripts/oracle_upload

@@ -21,7 +21,7 @@ SURVEY_MODELS = sc_sxr sc_hxr sc_bsyd sc_dasel sc_diag0 sc_diag02 cu_sxr cu_hxr 
 BSY_SURVEY_MODELS = cu_hxr_bsy cu_sfth_bsy cu_sxr_bsy sc_bsyd_bsy sc_dasel_bsy sc_hxr_bsy sc_sfts_bsy sc_sxr_bsy
 #TWISS_MODELS = sc_sxr sc_hxr sc_bsyd sc_dasel sc_diag0 cu_sxr cu_hxr sc_sxr2 sc_hxr2 sc_bsyd2 sc_dasel2 sc_diag02
 TWISS_MODELS = sc_sxr_beam0 sc_hxr_beam0 sc_bsyd_beam0 sc_dasel_beam0 sc_diag0_beam0 cu_sxr cu_hxr
-OPTICS ?= 05OCT2026s
+OPTICS ?= 14OCT2026s
 
 # Expand model-specific files
 PLOT_MODELS = sc_sxr sc_hxr sc_bsyd sc_diag0 sc_dasel sc_diag02 \
@@ -65,8 +65,8 @@ value_data.json $(SURVEY_TAPES) $(LINES_PRECURSORS) &: unified_keys.dat $(SCRIPT
 	$(PYTHON) $(SCRIPT_DIR)/surveyDataTao.py
 
 # twissDataTao.py
-$(TWISS_DATS) $(PRINT_FILES) &: unified_keys.dat $(SCRIPT_DIR)/twissDataTao.py
-	$(PYTHON) $(SCRIPT_DIR)/twissDataTao.py
+$(TWISS_DATS) $(PRINT_FILES) &: unified_keys.dat $(SCRIPT_DIR)/twissDataTao_par.py
+	$(PYTHON) $(SCRIPT_DIR)/twissDataTao_par.py
 
 # elementdevices_bmad.py
 $(ELEMENTDEVICES) &: cu_hxr_survey.tape cu_sxr_survey.tape $(SCRIPT_DIR)/elementdevices_bmad.py
@@ -82,8 +82,8 @@ BSC-AD_ACCEL-$(OPTICS).txt $(BSC_TXTS) &: ips.dump $(TWISS_DATS)
 #	$(PYTHON) $(SCRIPT_DIR)/bsc.py $(OPTICS)
 
 # plotsTao.py
-$(PLOTS_PDFS) &: $(SCRIPT_DIR)/plotsTao.py
-	$(PYTHON) $(SCRIPT_DIR)/plotsTao.py
+$(PLOTS_PDFS) &: $(SCRIPT_DIR)/plotsTao_par.py
+	$(PYTHON) $(SCRIPT_DIR)/plotsTao_par.py
 
 # make_lines.py
 $(LINES_ALLS) $(LINES_DATS) &: $(ELEMENTDEVICES) $(LINES_PRECURSORS) $(SCRIPT_DIR)/make_lines.py
@@ -123,7 +123,8 @@ docs: $(PLOTS_PDFS) $(LINES_ALLS) $(DOTS) $(DOTS_PDFS) $(MAPICON_PNGS) opticsico
 
 oracle_upload: $(PRINT_FILES) $(TWISS_DATS) $(ELEMENTDEVICES) ips.dump AD_ACCEL-$(OPTICS).txt BSY-AD_ACCEL-$(OPTICS).txt AD_ACCEL-extra-$(OPTICS).txt BSC-AD_ACCEL-$(OPTICS).txt $(BSC_TXTS)
 
-stage : $(PRINT_FILES) $(TWISS_DATS) $(PLOTS_PDFS) $(SURVEY_TAPES) docs $(ELEMENTDEVICES)
+#stage : $(PRINT_FILES) $(TWISS_DATS) $(PLOTS_PDFS) $(SURVEY_TAPES) docs $(ELEMENTDEVICES)
+stage :
 	mkdir -p installstage/opt installstage/src
 	rsync -az $(SURVEY_TAPES) $(PRINT_FILES) $(TWISS_DATS) $(PLOTS_PDFS) $(WEB) installstage
 	rsync -az $(DOTS) $(DOTS_PDFS) $(MAPICON_PNGS) $(LINES_DATS) $(WEB) $(ELEMENTDEVICES) installstage/opt
@@ -132,7 +133,7 @@ stage : $(PRINT_FILES) $(TWISS_DATS) $(PLOTS_PDFS) $(SURVEY_TAPES) docs $(ELEMEN
 
 # Install output lattice files, beam path device lists and maps in common area
 
-install_docs : stage
+install_docs :
 	rsync -azv installstage/ $(INSTALLROOT)/$(OPTICS)
 	ln -sfn $(OPTICS) $(INSTALLROOT)/latest
 

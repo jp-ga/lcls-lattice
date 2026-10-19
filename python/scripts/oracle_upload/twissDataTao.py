@@ -27,7 +27,8 @@ BDIR = f'{LCLS_LATTICE_ENV}/bmad/'
 #MODELS=['sc_sxr','sc_hxr','sc_bsyd','sc_diag0','sc_dasel','cu_sxr','cu_hxr',
 #        'sc_sxr2','sc_hxr2','sc_bsyd2','sc_dasel2','sc_diag02', 'sc_diagis',
 #        'sc_sxr_beam0','sc_hxr_beam0','sc_bsyd_beam0','sc_dasel_beam0','sc_diag0_beam0']
-MODELS=['sc_sxr','sc_hxr','sc_bsyd','sc_diag0', 'cu_sxr', 'cu_hxr', 'sc_dasel', 'sc_diag02', 'sc_diagis']
+MODELS=['sc_sxr','sc_hxr','sc_bsyd','sc_diag0', 'cu_sxr', 'cu_hxr', 'sc_dasel', 'sc_diag02', 'sc_diagis',
+        'sc_sxr_beam0','sc_hxr_beam0','sc_bsyd_beam0','sc_dasel_beam0','sc_diag0_beam0']
 #BEAM0_LATS=['sc_sxr','sc_hxr','sc_bsyd','sc_diag0','sc_dasel']
 LATFILE = {}
 for model in MODELS:

@@ -23,29 +23,33 @@ INSTALLROOT = /sdf/data/ad/public_html/model/output/lcls
 LINESLOCATION = /sdf/data/ad/accel/prod/lcls/
 
 
-# Variables
-#SURVEY_MODELS = sc_sxr sc_hxr sc_bsyd sc_dasel sc_diag0 sc_diag02 sc_diagis cu_sxr cu_hxr sc_sxr2 sc_hxr2 sc_bsyd2 sc_dasel2
-SURVEY_MODELS = sc_sxr sc_hxr sc_bsyd sc_dasel sc_diag0 sc_diag02 cu_sxr cu_hxr sc_sxr2 sc_hxr2 sc_bsyd2 sc_dasel2
-BSY_SURVEY_MODELS = cu_hxr_bsy cu_sfth_bsy cu_sxr_bsy sc_bsyd_bsy sc_dasel_bsy sc_hxr_bsy sc_sfts_bsy sc_sxr_bsy
-#TWISS_MODELS = sc_sxr sc_hxr sc_bsyd sc_dasel sc_diag0 cu_sxr cu_hxr sc_sxr2 sc_hxr2 sc_bsyd2 sc_dasel2 sc_diag02
-TWISS_MODELS = sc_sxr_beam0 sc_hxr_beam0 sc_bsyd_beam0 sc_dasel_beam0 sc_diag0_beam0 cu_sxr cu_hxr
+# MODELS
+MODELS = sc_sxr sc_hxr sc_bsyd sc_dasel sc_diag0 sc_diag02 sc_diagis cu_sxr cu_hxr sc_sxr2 sc_hxr2 sc_bsyd2 sc_dasel2 
+BEAM0_MODELS = sc_sxr_beam0 sc_hxr_beam0 sc_bsyd_beam0 sc_dasel_beam0 sc_diag0_beam0
+BSY_MODELS = cu_hxr_bsy cu_sfth_bsy cu_sxr_bsy sc_bsyd_bsy sc_dasel_bsy sc_hxr_bsy sc_sfts_bsy sc_sxr_bsy
+
+SURVEY_MODELS = $(MODELS) $(BEAM0_MODELS) $(BSY_MODELS)
+TWISS_MODELS  = $(MODELS) $(BEAM0_MODELS)
+PLOT_MODELS   = $(MODELS) $(BEAM0_MODELS)
+DOT_MODELS   = $(MODELS)
+LINES_MODELS   = $(MODELS)
+
+#TWISS_MODELS = sc_sxr sc_hxr sc_bsyd sc_dasel sc_diag0 cu_sxr cu_hxr sc_sxr2 sc_hxr2 sc_bsyd2 sc_dasel2 sc_diag02 sc_diagis
+#TWISS_MODELS = sc_sxr_beam0 sc_hxr_beam0 sc_bsyd_beam0 sc_dasel_beam0 sc_diag0_beam0 cu_sxr cu_hxr
 OPTICS ?= 14OCT2026s
 
 # Expand model-specific files
-PLOT_MODELS = sc_sxr sc_hxr sc_bsyd sc_diag0 sc_dasel sc_diag02 \
-              cu_sxr cu_hxr sc_hxr2 sc_sxr2 sc_dasel2 sc_bsyd2 \
-              sc_sxr_beam0 sc_hxr_beam0 sc_bsyd_beam0 sc_dasel_beam0 sc_diag0_beam0
 PLOTS_PDFS = $(foreach model,$(PLOT_MODELS),$(model)_plots.pdf)
-SURVEY_TAPES = $(foreach model,$(SURVEY_MODELS) $(BSY_SURVEY_MODELS),$(model)_survey.tape)
+SURVEY_TAPES = $(foreach model,$(SURVEY_MODELS),$(model)_survey.tape)
 TWISS_DATS = $(foreach model,$(TWISS_MODELS),$(model)_twiss.dat)
 PRINT_FILES = $(foreach model,$(TWISS_MODELS),$(model).print)
-LINES_PRECURSORS = $(foreach model,$(SURVEY_MODELS),$(model)_lines.precursor)
-LINES_ALLS = $(foreach model,$(SURVEY_MODELS),$(model)_lines.all)
-LINES_DATS = $(foreach model,$(SURVEY_MODELS),$(model)_lines.dat)
+LINES_PRECURSORS = $(foreach model,$(LINES_MODELS),$(model)_lines.precursor)
+LINES_ALLS = $(foreach model,$(LINES_MODELS),$(model)_lines.all)
+LINES_DATS = $(foreach model,$(LINES_MODELS),$(model)_lines.dat)
 BSC_TXTS = $(foreach model,$(TWISS_MODELS),BSC_$(model).txt)
-DOTS = $(foreach model,$(SURVEY_MODELS),$(model).dot)
+DOTS = $(foreach model,$(DOT_MODELS),$(model).dot)
 DOTS_PDFS := $(DOTS:.dot=_map.pdf)
-MAPICON_PNGS = $(foreach model,$(SURVEY_MODELS),$(model)_mapicon.png)
+MAPICON_PNGS = $(foreach model,$(DOT_MODELS),$(model)_mapicon.png)
 OPTICSICONS = $(foreach m,$(filter-out %_beam0,$(PLOT_MODELS)),$(m)_opticsicon.png)
 
 ELEMENTDEVICES:= elementdevices.dat \

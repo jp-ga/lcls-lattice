@@ -249,7 +249,7 @@ for model in MODELS:
         esprd[ix] = dE1 + 2*chirp + 2*Ejit
       elif ele.e_tot > 1.3 and ele.e_tot < 1.9: 
         # ~BC2
-        esprd[ix] = dE2 + chirp + 2*Ejit+Etrip/elim
+        esprd[ix] = dE2 + chirp + 2*Ejit + Etrip/elim
       elif ele.e_tot > 3.7 and ele.e_tot < 8.2: 
         # ~post-linac (includes LCLS2cuS)
         # 3.8->3.7 & 4.2->8.2 for LCLSII-HE (July 17, 2017)
@@ -264,11 +264,15 @@ for model in MODELS:
           # after undulator
           if ele.s > S_TCX01: 
             # after TCX01 Tcav
+            print(f'{ele.name=}')
             xt[ix] = (xf+xw/2)*np.sqrt(ele.beta_a/bxf)*np.sin(ele.phi_a-mx0)/np.sin(mxf-mx0); # scale from "xf" offset at screen (m)
           if S_XRterm>0:
             esprd[ix] = dE4 + chirp + vern + EFEL + Ejit + Etrip/elim # after undulator (HXR or SXR)
           else:
             esprd[ix] = dE4 + chirp + vern + Ejit + Etrip/elim  # in BSY dumpline
+      # energy_spread_estimate = region_specific_base_dE + 2*optional_chirp + 2*jitter + dE_SSA_trip
+      # xt = (offset_from_tcav + haf_width_from_tcav) * sqrt(beta/tcav_beta) * sin(phi-phi0)/sin(dump_phi-phi0)
+      # XID[IX] = 0.5 * 2*nsig*sqrt(emit*beta*beta_scaler) + eta_scaler*|eta|*energy_spread_estimate + 2*steering_error * 2*xt + chicane_extra
       XID[ix] = 1e3/2*float(max(2*nsig*np.sqrt(e*ele.beta_a*betaf) + etaf*np.abs(ele.eta_x)*esprd[ix] + 2*steer + 2*xt[ix] + dx, min_XID))
       YID[ix] = 1e3/2*float(max(2*nsig*np.sqrt(e*ele.beta_b*betaf) + etaf*np.abs(ele.eta_y)*esprd[ix] + 2*steer, min_YID))
       Dia[ix] = 2*float(np.sqrt(XID[ix]**2+YID[ix]**2))

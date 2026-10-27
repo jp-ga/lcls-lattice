@@ -210,7 +210,7 @@ dh03b: drift, l = 0.08401830- ( 10*0.054 - 0.506263 ) /2, type = "CSR"
 """
 
 CU_NEWELES['tcav0'] = """
-tcav0: crab_cavity, type = "TRANS_DEFL", rf_frequency = 2856 * 1e6, l = 0.6680236/2 !flange-to-flange (then split in two)
+tcav0: crab_cavity, type = "TRANS_DEFL", rf_frequency = 2856 * 1e6, l = 0.6680236/2, tilt = pi/2 !flange-to-flange (then split in two)
 """
 CU_NEWELES['tcav3'] = """
 tcav3: crab_cavity, type = "TRANS_DEFL", rf_frequency = 2856 * 1e6, l = 2.438/2

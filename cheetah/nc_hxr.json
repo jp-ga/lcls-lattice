@@ -669,12 +669,14 @@
             }
         ],
         "tcav0": [
-            "Cavity",
+            "TransverseDeflectingCavity",
             {
                 "length": 0.6680235862731934,
                 "voltage": 0.0,
                 "phase": -0.0,
                 "frequency": 2856000000.0,
+                "tilt": 1.5707963267948966,
+                "tracking_method": "linear",
                 "metadata": {
                     "alias": "TCAV:IN20:490"
                 }

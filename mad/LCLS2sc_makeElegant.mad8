@@ -980,6 +980,8 @@
 
   CALL, FILENAME="SETK2scLEI.xsif" !special match from LEI dogleg to laser heater
 
+  UMHTR, TYPE="UMLHLEI"
+
   ASSIGN, PRINT="DIAGIS.print"
   TITLE, "AD_ACCEL: superconducting linac: BEAM0LEI to DIAGI"
   BEAM, ENERGY=Ei
